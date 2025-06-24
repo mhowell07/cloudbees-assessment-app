@@ -4,9 +4,7 @@ import { GithubUser } from "./types/github";
 const Home = async () => {
 
   // Get the data from the Users route handler
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {
-    cache: 'no-store',
-  })
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {})
 
   if (!response.ok) {
     throw new Error('Failed to fetch users');
