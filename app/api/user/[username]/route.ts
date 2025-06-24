@@ -13,7 +13,6 @@ export const dynamic = 'force-static'
  * Define the GET method response
  * Documentation Link: https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-a-user
  ***/
-const octokit = new Octokit();
 
 export async function GET(
   request: NextRequest,
