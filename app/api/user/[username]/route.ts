@@ -2,13 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { Octokit } from 'octokit';
 
-
-/***
- *  HTTP methods are not cached by default. This allows us to cache the response of the API
- * // so we don't need to reach out again until we rebuild the application.
- ***/
-export const dynamic = 'force-static'
-
 /*** 
  * Define the GET method response
  * Documentation Link: https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-a-user
