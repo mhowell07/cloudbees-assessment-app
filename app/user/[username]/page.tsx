@@ -31,8 +31,6 @@ const UserPage = async ({ params }: UserPageProps) => {
 
   const user: GithubUserDetail = await response.json();
 
-  console.log(user);
-
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
