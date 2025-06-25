@@ -5,8 +5,7 @@ import { IoBusinessOutline, IoLocationOutline, IoCalendarOutline   } from "react
 import { GoCodeSquare, GoDatabase } from "react-icons/go";
 import { RiUserFollowLine } from "react-icons/ri";
 import { FaPersonWalkingArrowRight, FaXTwitter } from "react-icons/fa6";
-import { FaArrowLeft, FaGithub, FaTwitter } from "react-icons/fa";
-import Link from "next/link";
+import { FaGithub } from "react-icons/fa";
 import BackButton from "@/components/BackButton";
 
 
@@ -33,6 +32,11 @@ const UserPage = async ({ params }: UserPageProps) => {
   const user: GithubUserDetail = await response.json();
 
   console.log(user);
+
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
 
 
   return (
@@ -64,15 +68,15 @@ const UserPage = async ({ params }: UserPageProps) => {
             <div id="details" className="flex items-center justify-center gap-4">
               <div className="flex items-center justify-center gap-1">
                 <IoBusinessOutline size={20} className="text-gray-900" />
-                {user.company}
+                {user.company ? user.company : 'N/A'}
               </div>
               <div className="flex items-center justify-center gap-1">
                 <IoLocationOutline size={20} className="text-gray-900" />
-                {user.location}
+                {user.location ? user.location : 'N/A'}
               </div>
               <div className="flex items-center justify-center gap-1">
                 <IoCalendarOutline size={20} className="text-gray-900" />
-                Joined {user.created_at}
+                Joined {formatDate(user.created_at)}
               </div>
             </div>
           </div>
