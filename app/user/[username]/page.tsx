@@ -5,7 +5,9 @@ import { IoBusinessOutline, IoLocationOutline, IoCalendarOutline   } from "react
 import { GoCodeSquare, GoDatabase } from "react-icons/go";
 import { RiUserFollowLine } from "react-icons/ri";
 import { FaPersonWalkingArrowRight, FaXTwitter } from "react-icons/fa6";
-import { FaGithub, FaTwitter } from "react-icons/fa";
+import { FaArrowLeft, FaGithub, FaTwitter } from "react-icons/fa";
+import Link from "next/link";
+import BackButton from "@/components/BackButton";
 
 
 type UserPageProps = {
@@ -35,6 +37,9 @@ const UserPage = async ({ params }: UserPageProps) => {
 
   return (
     <div className="flex flex-col w-full items-center">
+      <div id="back-btn" className="absolute top-2 left-2">
+        <BackButton />
+      </div>
       <div className="w-full pt-20 pb-40 px-4 md:px-8 lg:px-16 bg-gray-200">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
@@ -49,10 +54,12 @@ const UserPage = async ({ params }: UserPageProps) => {
                 <FaGithub size={30} />
                 <h6 className="font-medium text-gray-600 text-lg md:text-xl uppercase">@{user.login}</h6>
               </span>
+              {user.twitter_username && (
               <span className="flex item-center justify-center gap-1.5">
                 <FaXTwitter size={30} />
-                <h6 className="font-medium text-gray-600 text-lg md:text-xl uppercase">@{user.login}</h6>
+                <h6 className="font-medium text-gray-600 text-lg md:text-xl uppercase">@{user.twitter_username}</h6>
               </span>
+              )}
             </div>
             <div id="details" className="flex items-center justify-center gap-4">
               <div className="flex items-center justify-center gap-1">
