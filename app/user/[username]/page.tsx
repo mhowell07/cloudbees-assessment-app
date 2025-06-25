@@ -38,6 +38,10 @@ const UserPage = async ({ params }: UserPageProps) => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  const formatNumber = (num: number) => {
+    return num.toLocaleString();
+  };
+
 
   return (
     <div className="flex flex-col w-full items-center">
@@ -92,7 +96,7 @@ const UserPage = async ({ params }: UserPageProps) => {
             <h4 className="font-medium text-gray-700 text-lg mb-4">Repositories</h4>
 
             <p className="font-normal text-gray-500 text-md">
-              {user.public_repos}
+              {formatNumber(user.public_repos)}
             </p>
           </div>
         </div>
@@ -105,7 +109,7 @@ const UserPage = async ({ params }: UserPageProps) => {
             <h4 className="font-medium text-gray-700 text-lg mb-4">Gists</h4>
 
             <p className="font-normal text-gray-500 text-md">
-              {user.public_gists}
+              {formatNumber(user.public_gists)}
             </p>
           </div>
         </div>
@@ -118,7 +122,7 @@ const UserPage = async ({ params }: UserPageProps) => {
             <h4 className="font-medium text-gray-700 text-lg mb-4">Followers</h4>
 
             <p className="font-normal text-gray-500 text-md">
-              {user.followers}
+              {formatNumber(user.followers)}
             </p>
           </div>
         </div>
@@ -131,7 +135,7 @@ const UserPage = async ({ params }: UserPageProps) => {
             <h4 className="font-medium text-gray-700 text-lg mb-4">Following</h4>
 
             <p className="font-normal text-gray-500 text-md">
-              {user.following}
+              {formatNumber(user.following)}
             </p>
           </div>
         </div>
