@@ -50,7 +50,7 @@ const UserPage = async ({ params }: UserPageProps) => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-center">
             <div className="flex justify-center mb-8">
-              <Image src={user.avatar_url} width={150} height={150} alt={`${user.login}'s Avatar Image`} className="rounded-full" />
+              <Image src={user.avatar_url} width={150} height={150} alt={`${user.login}'s Avatar Image`} className="rounded-full" priority />
             </div>
             <h1 id="name" className="font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-4 text-center">
               {user.name}
