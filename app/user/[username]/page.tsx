@@ -1,6 +1,12 @@
 import { GithubUserDetail } from "@/types/github";
 import Image from "next/image";
 
+import { IoBusinessOutline, IoLocationOutline, IoCalendarOutline   } from "react-icons/io5";
+import { GoCodeSquare, GoDatabase } from "react-icons/go";
+import { RiUserFollowLine } from "react-icons/ri";
+import { FaPersonWalkingArrowRight, FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaTwitter } from "react-icons/fa";
+
 
 type UserPageProps = {
   params: {
@@ -28,16 +34,97 @@ const UserPage = async ({ params }: UserPageProps) => {
 
 
   return (
-    <div className="w-full py-20 px-4 md:px-8 lg:px-16">
-        <div className="text-center">
+    <div className="flex flex-col w-full items-center">
+      <div className="w-full pt-20 pb-40 px-4 md:px-8 lg:px-16 bg-gray-200">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
             <div className="flex justify-center mb-8">
-                <Image src={user.avatar_url} width={150} height={150} alt={`${user.login}'s Avatar Image`} className="rounded-full" />
+              <Image src={user.avatar_url} width={150} height={150} alt={`${user.login}'s Avatar Image`} className="rounded-full" />
             </div>
-            <h1 className="font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-8">
-                {user.name}
+            <h1 id="name" className="font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-4">
+              {user.name}
             </h1>
-            <h6 className="font-medium text-gray-600 text-lg md:text-2xl uppercase mb-8">@{user.login}</h6>
+            <div id="social" className="flex gap-8 justify-center mb-10">
+              <span className="flex item-center justify-center gap-1.5">
+                <FaGithub size={30} />
+                <h6 className="font-medium text-gray-600 text-lg md:text-xl uppercase">@{user.login}</h6>
+              </span>
+              <span className="flex item-center justify-center gap-1.5">
+                <FaXTwitter size={30} />
+                <h6 className="font-medium text-gray-600 text-lg md:text-xl uppercase">@{user.login}</h6>
+              </span>
+            </div>
+            <div id="details" className="flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center gap-1">
+                <IoBusinessOutline size={20} className="text-gray-900" />
+                {user.company}
+              </div>
+              <div className="flex items-center justify-center gap-1">
+                <IoLocationOutline size={20} className="text-gray-900" />
+                {user.location}
+              </div>
+              <div className="flex items-center justify-center gap-1">
+                <IoCalendarOutline size={20} className="text-gray-900" />
+                Joined {user.created_at}
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div className="w-full max-w-4xl flex gap-4 -mt-25 items-center">
+        <div className="flex flex-1">
+          <div className="bg-white px-8 py-10 rounded-md flex flex-col items-center flex-1 border border-gray-300 shadow-lg">
+            <div className="w-20 py-6 flex justify-center bg-gray-100 rounded-md mb-4">
+                <GoDatabase size={24} />
+            </div>
+
+            <h4 className="font-medium text-gray-700 text-lg mb-4">Repositories</h4>
+
+            <p className="font-normal text-gray-500 text-md">
+              {user.public_repos}
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-1">
+          <div className="bg-white px-8 py-10 rounded-md flex flex-col items-center flex-1 border border-gray-300 shadow-lg">
+            <div className="w-20 py-6 flex justify-center bg-gray-100 rounded-md mb-4">
+                <GoCodeSquare  size={24} />
+            </div>
+
+            <h4 className="font-medium text-gray-700 text-lg mb-4">Gists</h4>
+
+            <p className="font-normal text-gray-500 text-md">
+              {user.public_gists}
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-1">
+          <div className="bg-white px-8 py-10 rounded-md flex flex-col items-center flex-1 border border-gray-300 shadow-lg">
+            <div className="w-20 py-6 flex justify-center bg-gray-100 rounded-md mb-4">
+                <RiUserFollowLine size={24} />
+            </div>
+
+            <h4 className="font-medium text-gray-700 text-lg mb-4">Followers</h4>
+
+            <p className="font-normal text-gray-500 text-md">
+              {user.followers}
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-1">
+          <div className="bg-white px-8 py-10 rounded-md flex flex-col items-center flex-1 border border-gray-300 shadow-lg">
+            <div className="w-20 py-6 flex justify-center bg-gray-100 rounded-md mb-4">
+                <FaPersonWalkingArrowRight size={24} />
+            </div>
+
+            <h4 className="font-medium text-gray-700 text-lg mb-4">Following</h4>
+
+            <p className="font-normal text-gray-500 text-md">
+              {user.following}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
