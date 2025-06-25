@@ -40,6 +40,18 @@ const UserPage = async ({ params }: UserPageProps) => {
     return num.toLocaleString();
   };
 
+  const splitName = (fullName: string | null) => {
+    if (!fullName) return { firstName: '', lastName: '' };
+    
+    const nameParts = fullName.trim().split(' ');
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+    
+    return { firstName, lastName };
+  };
+
+  const { firstName, lastName } = splitName(user.name);
+
 
   return (
     <div className="flex flex-col w-full items-center mb-20">
@@ -53,7 +65,7 @@ const UserPage = async ({ params }: UserPageProps) => {
               <Image src={user.avatar_url} width={150} height={150} alt={`${user.login}'s Avatar Image`} className="rounded-full" priority />
             </div>
             <h1 id="name" className="font-normal text-gray-900 text-4xl md:text-7xl leading-none mb-4 text-center">
-              {user.name}
+              <span>{firstName}</span> <span>{lastName}</span>
             </h1>
             <div id="social" className="flex w-full gap-x-8 gap-y-2 mb-10 flex-col md:flex-row items-center justify-center">
               <div className="flex items-center justify-center gap-1.5 flex-col md:flex-row">
