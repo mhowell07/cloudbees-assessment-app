@@ -1,5 +1,6 @@
 import { GithubUserDetail } from "@/types/github";
 import Image from "next/image";
+import { Octokit } from 'octokit';
 
 import { IoBusinessOutline, IoLocationOutline, IoCalendarOutline   } from "react-icons/io5";
 import { GoCodeSquare, GoDatabase } from "react-icons/go";
@@ -20,16 +21,19 @@ const UserPage = async ({ params }: UserPageProps) => {
   // Await params to make sure we have it before trying to access it
   const { username } = await params;
 
-  // Get the data from the User route handler
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user/${username}`, {
-    cache: 'no-store',
-  });
+  const octokit = new Octokit();
 
-  if (!response.ok) {
+  let user: GithubUserDetail;
+
+  try {
+    const { response } = await octokit.request('/users/{username}', {
+      username: username,
+    });
+    user = response;
+  } catch (error) {
+    console.error('Error fetching Github user:', error);
     throw new Error(`Failed to fetch user: ${username}`);
   }
-
-  const user: GithubUserDetail = await response.json();
 
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };

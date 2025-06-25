@@ -1,19 +1,23 @@
 import UserTable from "@/components/UserTable";
 import { GithubUser } from "./types/github";
+import { Octokit } from 'octokit';
 
 // Force dynamic rendering to avoid build-time fetch issues
 export const dynamic = 'force-dynamic';
 
 const Home = async () => {
+  const octokit = new Octokit();
 
-  // Get the data from the Users route handler
-  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {})
+  let users: GithubUser[] = [];
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch users');
+  try {
+    const response = await octokit.request('/users');
+    users = response.data;
+  } catch (error) {
+    console.error('Error fetching Github users:', error);
+    // Return empty array on error to prevent page crash
+    users = [];
   }
-
-  const users: GithubUser[] = await response.json();
 
   return (
     <div className="w-full max-w-7xl mx-auto">
