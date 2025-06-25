@@ -10,9 +10,9 @@ import BackButton from "@/components/BackButton";
 
 
 type UserPageProps = {
-  params: {
+  params: Promise<{
     username: string;
-  };
+  }>;
 };
 
 const UserPage = async ({ params }: UserPageProps) => {
@@ -26,7 +26,7 @@ const UserPage = async ({ params }: UserPageProps) => {
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch user: ${params.username}`);
+    throw new Error(`Failed to fetch user: ${username}`);
   }
 
   const user: GithubUserDetail = await response.json();

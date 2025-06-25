@@ -1,6 +1,9 @@
 import UserTable from "@/components/UserTable";
 import { GithubUser } from "./types/github";
 
+// Force dynamic rendering to avoid build-time fetch issues
+export const dynamic = 'force-dynamic';
+
 const Home = async () => {
 
   // Get the data from the Users route handler
