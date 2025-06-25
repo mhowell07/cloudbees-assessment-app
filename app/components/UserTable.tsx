@@ -32,7 +32,7 @@ const UserTable = ({ users }: UserTbableProps) => {
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
               <div className="flex justify-end">
-                <a href={user.html_url} className="w-fit hover:text-blue-700 trasition-all hover:transition-all"><FaGithubSquare size={25} className="hover:cursor-pointer"/></a>
+                <a href={user.html_url} className="w-fit hover:text-blue-700 trasition-all hover:transition-all" target="_blank"><FaGithubSquare size={25} className="hover:cursor-pointer" /></a>
               </div>
             </td>
           </tr>
