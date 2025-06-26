@@ -26,10 +26,10 @@ const UserPage = async ({ params }: UserPageProps) => {
   let user: GithubUserDetail;
 
   try {
-    const { response } = await octokit.request('/users/{username}', {
+    const { data } = await octokit.request('GET /users/{username}', {
       username: username,
     });
-    user = response;
+    user = data;
   } catch (error) {
     console.error('Error fetching Github user:', error);
     throw new Error(`Failed to fetch user: ${username}`);
